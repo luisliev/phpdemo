@@ -15,8 +15,15 @@ pipeline {
         }
     }
     stages {
-        stage('Unit Tests') {
+        stage('Build') {
             steps {
+                
+                echo '===== Installing Dependencies ====='
+                container('php') {
+                    sh 'composer install'
+                }
+
+                echo '===== Running Unit Tests ====='
                 container('php') {
                     sh './vendor/bin/phpunit --bootstrap src/autoload.php --coverage-html .'
                 }
