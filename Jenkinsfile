@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        SONAR_LOGIN = credentials('soncar-cloud-token')
+        SONAR_LOGIN = credentials('sonar-cloud-token')
     }
     agent {
         kubernetes {
