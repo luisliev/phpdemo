@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        SONAR_LOGIN = credentials('soncar-cloud-token')
+    }
     agent {
         kubernetes {
             yaml '''
@@ -47,14 +50,17 @@ pipeline {
                     junit 'tests/reports/**/*.xml'
                 }
             }
-        }
+        }g
         stage('Sonar') {
             steps {
                 echo '===== Running Sonar Analysis ====='
                 container('sonar-scanner') {
-                    sh '${scannerHome}/bin/sonar-scanner'
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
+            // steps {
+            //     waitForQualityGate abortPipeline: true
+            // }
         }
     }
 }
