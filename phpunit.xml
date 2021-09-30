@@ -29,7 +29,7 @@
     </coverage>
 
     <logging>
-        <junit outputFile="junit.xml"/>
+        <junit outputFile="tests/junit.xml"/>
     </logging>
 
 </phpunit>
