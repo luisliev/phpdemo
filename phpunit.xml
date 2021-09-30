@@ -21,13 +21,12 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <report>
+            <html outputDirectory="tests/" lowUpperBound="50" highLowerBound="90"/>
+            <php outputFile="tests/coverage.php"/>
+            <xml outputDirectory="tests/"/>
+        </report>
     </coverage>
-
-    <report>
-        <html outputDirectory="tests/" lowUpperBound="50" highLowerBound="90"/>
-        <php outputFile="tests/coverage.php"/>
-        <xml outputDirectory="tests/"/>
-    </report>
 
     <logging>
         <junit outputFile="junit.xml"/>

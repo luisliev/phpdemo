@@ -14,8 +14,8 @@ pipeline {
                       command:
                       - cat
                       tty: true
-                    - name: php
-                      image: php:7.4.24-cli
+                    - name: xdebug
+                      image: mileschou/xdebug:8.0
                       command:
                       - cat
                       tty: true
@@ -40,15 +40,15 @@ pipeline {
                 }
 
                 echo '===== Running Unit Tests ====='
-                container('php') {
+                container('xdebug') {
                     sh './vendor/bin/phpunit --bootstrap src/autoload.php'
                     sh 'ls -la tests/'
                 }
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'tests/reports/**/*', fingerprint: true
-                    junit 'tests/reports/**/*.xml'
+                    archiveArtifacts artifacts: 'tests/**/*', fingerprint: true
+                    junit 'tests/junit.xml'
                 }
             }
         }
