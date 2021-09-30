@@ -59,7 +59,7 @@ pipeline {
             steps {
                 echo '===== Running Sonar Analysis ====='
                 container('sonar-scanner') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "sonar-scanner"
                 }
             }
             // steps {
