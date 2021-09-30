@@ -6,7 +6,7 @@ pipeline {
                 stage('Unit Tests') {
                     steps {
                         container('phpunit') {
-                            phpunit --bootstrap src/autoload.php --coverage-html .
+                            ./phpunit --bootstrap src/autoload.php --coverage-html .
                         }
                     }
                 }
