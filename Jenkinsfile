@@ -19,6 +19,9 @@ pipeline {
                       command:
                       - cat
                       tty: true
+                      env:
+                        - name: XDEBUG_MODE
+                          value: coverage
                     - name: sonar-scanner
                       image: sonarsource/sonar-scanner-cli
                       command:
