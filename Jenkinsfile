@@ -50,7 +50,7 @@ pipeline {
                     junit 'tests/reports/**/*.xml'
                 }
             }
-        }g
+        }
         stage('Sonar') {
             steps {
                 echo '===== Running Sonar Analysis ====='
