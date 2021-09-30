@@ -30,9 +30,9 @@
     </filter>
 
     <report>
-        <html outputDirectory="tests/reports/" lowUpperBound="50" highLowerBound="90"/>
-        <php outputFile="coverage.php"/>
-        <xml outputDirectory="tests/reports/"/>
+        <html outputDirectory="tests/" lowUpperBound="50" highLowerBound="90"/>
+        <php outputFile="tests/coverage.php"/>
+        <xml outputDirectory="tests/"/>
     </report>
 
     <logging>
