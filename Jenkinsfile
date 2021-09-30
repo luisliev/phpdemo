@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        SONAR_LOGIN = credentials('sonar-cloud-token')
+        SONAR_TOKEN = credentials('sonar-cloud-token')
     }
     agent {
         kubernetes {
@@ -28,8 +28,8 @@ pipeline {
                       - cat
                       tty: true
                       env:
-                        - name: SONAR_LOGIN
-                          value: '$SONAR_LOGIN'
+                        - name: SONAR_TOKEN
+                          value: $SONAR_TOKEN
             '''
         }
     }
