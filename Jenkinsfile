@@ -6,8 +6,8 @@ pipeline {
                 kind: Pod
                 spec:
                     containers:
-                    - name: phpunit
-                      image: phpunit/phpunit
+                    - name: php
+                      image: php:7.4.24-cli
                       command:
                       - cat
                       tty: true
@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage('Unit Tests') {
             steps {
-                container('phpunit') {
+                container('php') {
                     sh './vendor/bin/phpunit --bootstrap src/autoload.php --coverage-html .'
                 }
             }
