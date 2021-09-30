@@ -42,7 +42,7 @@ pipeline {
                 echo '===== Running Unit Tests ====='
                 container('php') {
                     sh './vendor/bin/phpunit --bootstrap src/autoload.php'
-                    sh 'ls -la'
+                    sh 'ls -la tests/'
                 }
             }
             post {
