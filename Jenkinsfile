@@ -6,6 +6,11 @@ pipeline {
                 kind: Pod
                 spec:
                     containers:
+                    - name: composer
+                      image: composer:2.1.8
+                      command:
+                      - cat
+                      tty: true
                     - name: php
                       image: php:7.4.24-cli
                       command:
@@ -19,7 +24,7 @@ pipeline {
             steps {
                 
                 echo '===== Installing Dependencies ====='
-                container('php') {
+                container('composer') {
                     sh 'composer install'
                 }
 
