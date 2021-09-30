@@ -44,7 +44,7 @@ pipeline {
 
                 echo '===== Running Unit Tests ====='
                 container('xdebug') {
-                    sh './vendor/bin/phpunit --bootstrap src/autoload.php'
+                    sh './vendor/bin/phpunit'
                     sh 'ls -la tests/'
                 }
 
