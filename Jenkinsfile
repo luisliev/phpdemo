@@ -50,12 +50,14 @@ pipeline {
 
                 echo '===== Running Sonar Analysis ====='
                 container('sonar-scanner') {
-                    sh "sonar-scanner"
+                    withSonarQubeEnv('SonarCloud') {
+                        sh "sonar-scanner"
+                    }
                 }
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'tests/**/*', fingerprint: true
+                    // archiveArtifacts artifacts: 'tests/**/*', fingerprint: true
                     junit 'tests/junit.xml'
                 }
             }
