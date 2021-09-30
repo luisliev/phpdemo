@@ -1,14 +1,24 @@
 pipeline {
-    agent none
+    agent {
+        kubernetes {
+            yaml '''
+                apiVersion: v1
+                kind: Pod
+                spec:
+                    containers:
+                    - name: phpunit
+                      image: phpunit/phpunit
+                      command:
+                      - cat
+                      tty: true
+            '''
+        }
+    }
     stages {
-        podTemplate {
-            node('phpunit') {
-                stage('Unit Tests') {
-                    steps {
-                        container('phpunit') {
-                            ./phpunit --bootstrap src/autoload.php --coverage-html .
-                        }
-                    }
+        stage('Unit Tests') {
+            steps {
+                container('phpunit') {
+                    sh './vendor/bin/phpunit --bootstrap src/autoload.php --coverage-html .'
                 }
             }
         }
