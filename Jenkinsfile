@@ -28,6 +28,8 @@ pipeline {
                       - cat
                       tty: true
                       env:
+                        - name: SONAR_HOST_URL
+                          value: https://sonarcloud.io/
                         - name: SONAR_LOGIN
                           value: '$SONAR_LOGIN'
             '''
