@@ -47,6 +47,11 @@ pipeline {
                     sh './vendor/bin/phpunit --bootstrap src/autoload.php'
                     sh 'ls -la tests/'
                 }
+
+                echo '===== Running Sonar Analysis ====='
+                container('sonar-scanner') {
+                    sh "sonar-scanner"
+                }
             }
             post {
                 always {
@@ -54,17 +59,6 @@ pipeline {
                     junit 'tests/junit.xml'
                 }
             }
-        }
-        stage('Sonar') {
-            steps {
-                echo '===== Running Sonar Analysis ====='
-                container('sonar-scanner') {
-                    sh "sonar-scanner"
-                }
-            }
-            // steps {
-            //     waitForQualityGate abortPipeline: true
-            // }
         }
     }
 }
