@@ -9,7 +9,6 @@
     convertWarningsToExceptions = "true"
     processIsolation            = "false"
     stopOnFailure               = "false"
-    syntaxCheck                 = "true"
     verbose                     = "true">
 
     <testsuites>
@@ -29,5 +28,15 @@
             <directory suffix=".php">src/</directory>
         </whitelist>
     </filter>
+
+    <report>
+        <html outputDirectory="tests/reports/" lowUpperBound="50" highLowerBound="90"/>
+        <php outputFile="coverage.php"/>
+        <xml outputDirectory="tests/reports/"/>
+    </report>
+
+    <logging>
+        <junit outputFile="junit.xml"/>
+    </logging>
 
 </phpunit>
