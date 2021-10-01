@@ -34,10 +34,9 @@ final class Email
 		}
 	}
 
-	public static function notCoveredFunction(): string
-	{
-		return "This is a new function";
-	}
-
+	// public static function notCoveredFunction(): string
+	// {
+	// 	return "This is a new function";
+	// }
 
 }
