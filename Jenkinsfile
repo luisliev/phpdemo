@@ -36,7 +36,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-
+                
                 echo '===== Installing Dependencies ====='
                 container('composer') {
                     sh 'composer install'
@@ -44,27 +44,28 @@ pipeline {
 
                 echo '===== Running Unit Tests ====='
                 container('xdebug') {
-                    sh './vendor/bin/phpunit --bootstrap src/autoload.php'
+                    sh './vendor/bin/phpunit'
                     sh 'ls -la tests/'
+                }
+
+                echo '===== Running Sonar Analysis ====='
+                container('sonar-scanner') {
+                    withSonarQubeEnv('SonarCloud') {
+                        sh "sonar-scanner"
+                    }
                 }
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'tests/**/*', fingerprint: true
+                    // archiveArtifacts artifacts: 'tests/**/*', fingerprint: true
                     junit 'tests/junit.xml'
                 }
             }
         }
-        stage('Sonar') {
+        stage('Quality Gate') {
             steps {
-                echo '===== Running Sonar Analysis ====='
-                container('sonar-scanner') {
-                    sh "sonar-scanner"
-                }
+                waitForQualityGate abortPipeline: true
             }
-            // steps {
-            //     waitForQualityGate abortPipeline: true
-            // }
         }
     }
 }

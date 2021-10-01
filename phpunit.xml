@@ -23,8 +23,7 @@
         </include>
         <report>
             <html outputDirectory="tests/" lowUpperBound="50" highLowerBound="90"/>
-            <php outputFile="tests/coverage.php"/>
-            <xml outputDirectory="tests/"/>
+            <clover outputFile="tests/clover.xml"/>
         </report>
     </coverage>
 
